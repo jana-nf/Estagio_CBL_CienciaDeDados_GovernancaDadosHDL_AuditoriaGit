@@ -11,32 +11,6 @@ e otimizar a colaboração em grandes repositórios de dados (Data Lakehouse - H
 Como garantir a rastreabilidade e a reversão seletiva (Rollback) de transformações incorretas (bugs) 
 em um pipeline de dados críticos (Bronze -> Silver -> Gold) sem comprometer a auditoria ou reescrever o histórico?
 
-# 🛠️ Tecnologias e Conceitos Chave
-
-### Arquitetura
-Data Lakehouse (HDL), ELT/ETL	
-
-Estratégia de Branching (Git Flow/Trunk-Based)
-
-
-### Governança
-Auditoria, Imutabilidade, Qualidade	
-
-git revert, git blame, Git Hooks
-
-
-### Otimização
-Monorepos, Colaboração, Assets Grandes	
-
-git sparse-checkout, git LFS, git submodule
-
-
-### Bancos de Dados
-SQL, PL/SQL, NoSQL	
-
-git rebase -i, git tag
-
-
 # 🚀 Estrutura do Projeto (Fases CBL)
 
 O repositório está organizado em cinco fases que simulam o ciclo de vida de um projeto de dados, 
@@ -88,3 +62,74 @@ onde cada fase tem um requisito técnico e um desafio de Git Avançado a ser dom
   - git tag: Marcação da versão final do pipeline como um Release imutável (v1.0.0-GOLD-RELEASE).
 
 
+# 🎯 Git-Driven Data Governance: Pipeline ELT no Lakehouse
+
+![DataOps](https://img.shields.io/badge/DataOps-Expert-blue?style=for-the-badge)
+![Git](https://img.shields.io/badge/Git-Advanced-orange?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+Este repositório é o resultado de um projeto **Challenge-Based Learning (CBL)** focado em elevar o controle de versão Git além do básico. O objetivo é estabelecer uma governança de dados robusta, auditável e resiliente em um pipeline ELT (Bronze -> Silver -> Gold).
+
+## 💡 O Desafio Central
+Como garantir a rastreabilidade e a reversão seletiva (**Rollback**) de transformações incorretas em um pipeline de dados críticos sem comprometer a auditoria ou reescrever o histórico?
+
+---
+
+## 🏗️ Arquitetura do Projeto (Fases CBL)
+
+O projeto simula o ciclo de vida de um Data Lakehouse moderno, onde cada fase resolve um desafio técnico e um gargalo de governança:
+
+### 🥉 Fase 1: Ingestão (Bronze)
+* **Foco:** Extração de fontes SQLite e TinyDB.
+* **Estratégia:** Implementação de **Trunk-Based Development** para agilidade.
+
+### 🥈 Fase 2: Refinamento (Silver)
+* **Foco:** Limpeza e integração com Python/Pandas.
+* **Git Topic:** Uso de `git rebase -i` (Interactive Rebase) para manter um histórico linear e legível antes do merge.
+
+### 🥇 Fase 3: Agregação (Gold)
+* **Foco:** Business Intelligence e Feature Engineering.
+* **Governança:** Implementação de **Git Hooks (pre-commit)** para validação de sintaxe e proteção de segredos.
+
+### 🔍 Fase 4: Auditoria e Rollback (O Ponto Crítico)
+* **Cenário:** Identificação de um bug na regra de impostos.
+* **Ferramentas:** * `git bisect`: Busca binária automática para localizar o commit defeituoso.
+    * `git blame`: Identificação do contexto e autor da alteração.
+    * `git revert`: Correção auditável que preserva a imutabilidade do histórico.
+
+### 🚀 Fase 5: Otimização e Release
+* **Eficiência:** `git sparse-checkout` para download parcial do repo (ex: apenas camada Gold).
+* **Assets Grandes:** `git LFS` para dashboards e modelos ML.
+
+---
+
+## 🛠️ Tecnologias e Ferramentas
+
+| Categoria | Tecnologia |
+| :--- | :--- |
+| **Linguagens** | Python, SQL, PL/SQL |
+| **Data Stack** | Pandas, SQLite, TinyDB |
+| **DevOps/Git** | Git Advanced, Git Hooks, LFS |
+| **Ambiente** | Google Colab / Terminal Linux |
+
+---
+
+## 📊 Governança de Storage: Git vs. Database
+
+Decidimos onde cada asset reside com base em custo e versionamento:
+
+| Asset | Localização | Método de Versão |
+| :--- | :--- | :--- |
+| Scripts (.py, .sql) | Git Core | Granular (Line-by-line) |
+| Modelos/Dashboards | Git LFS | Snapshots binários |
+| Dados (Parquet/DB) | Cloud/DB | Particionamento/Time-travel |
+
+---
+
+## 🧪 Como Reproduzir a Auditoria (Hands-on)
+
+Você pode testar a inteligência deste repositório usando o script de validação automatizada:
+
+1. **Inicie o Bisect:**
+   ```bash
+   git bisect start HEAD v1.0.0
